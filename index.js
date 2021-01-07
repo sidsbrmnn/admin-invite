@@ -1,6 +1,6 @@
+require('dotenv').config();
 require('express-async-errors');
 
-const path = require('path');
 const flash = require('connect-flash');
 const cookieParser = require('cookie-parser');
 const csurf = require('csurf');
@@ -11,6 +11,7 @@ const mongoose = require('mongoose');
 const nodemailer = require('nodemailer');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
+const path = require('path');
 
 const User = require('./models/user');
 const Invite = require('./models/invite');
@@ -18,12 +19,12 @@ const Invite = require('./models/invite');
 const app = express();
 const csrfProtection = csurf({ cookie: true });
 const transporter = nodemailer.createTransport({
-  host: 'smtp.ethereal.email',
-  port: 587,
-  secure: false,
+  host: process.env.NODEMAILER_HOST,
+  port: Number(process.env.NODEMAILER_PORT),
+  secure: Number(process.env.NODEMAILER_PORT) === 465,
   auth: {
-    user: 'alek.collins@ethereal.email',
-    pass: 'BFB6eB4KjsH7xQe5we',
+    user: process.env.NODEMAILER_USER,
+    pass: process.env.NODEMAILER_PASS,
   },
 });
 
@@ -80,7 +81,7 @@ app.use(
   session({
     resave: false,
     saveUninitialized: true,
-    secret: 'blehh',
+    secret: process.env.SESSION_SECRET,
   })
 );
 app.use(cookieParser());
