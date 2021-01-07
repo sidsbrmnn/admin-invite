@@ -1,0 +1,11 @@
+{{> navbar user=user}}
+
+<main id="content">
+  <section class="py-5">
+    <div class="container">
+      {{#if user}}
+        <h1>Hello, {{user.name}}</h1>
+      {{/if}}
+    </div>
+  </section>
+</main>

@@ -1,0 +1,32 @@
+<main id="content"
+  class="min-vh-100 py-5 d-flex align-items-center justify-content-center">
+  <div class="w-100" style="max-width: 330px;">
+    <img src="" alt="" class="mb-4" width="72" height="72">
+    <h1 class="h3 mb-4 fw-normal">Complete your profile</h1>
+
+    <form action="/invite/verify" method="post">
+      <input type="hidden" name="_csrf" value="{{csrfToken}}">
+      <input type="hidden" name="_invite" value="{{inviteToken}}">
+
+      <div class="mb-3">
+        <label for="name" class="form-label">Name</label>
+        <input type="name" name="name" id="name" class="form-control"
+          autocomplete="name" autofocus="true" required="true">
+      </div>
+
+      <div class="mb-3">
+        <label for="email-address" class="form-label">Email</label>
+        <input type="email" name="email" id="email-address" class="form-control"
+          value="{{email}}" readonly="true" required="true">
+      </div>
+
+      <div class="mb-4">
+        <label for="new-password" class="form-label">Password</label>
+        <input type="password" name="password" id="new-password"
+          class="form-control" autocomplete="new-password" required="true">
+      </div>
+
+      <button type="submit" class="btn btn-primary">Get started</button>
+    </form>
+  </div>
+</main>

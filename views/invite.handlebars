@@ -1,0 +1,41 @@
+{{> navbar user=user}}
+
+<main id="content">
+  <section class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 col-12">
+          <div class="card">
+            <form action="/invite" method="post" class="card-body">
+              <input type="hidden" name="_csrf" value="{{csrfToken}}">
+              <div class="row">
+                <div class="col-8">
+                  <label for="email-address"
+                    class="visually-hidden">Email</label>
+                  <input type="email" name="email" id="email-address"
+                    class="form-control" autocomplete="email" autofocus="true"
+                    placeholder="Email address" required="true">
+                </div>
+                <div class="col-4">
+                  <button type="submit"
+                    class="w-100 btn btn-primary">Invite</button>
+                </div>
+              </div>
+            </form>
+          </div>
+          {{#if success}}
+            <div class="mt-3 alert alert-success" role="alert">
+              {{success}}
+            </div>
+          {{/if}}
+          {{#if error}}
+            <div class="mt-3 alert alert-danger" role="alert">
+              {{error}}
+            </div>
+          {{/if}}
+        </div>
+        <div class="col-lg-6 col-12"></div>
+      </div>
+    </div>
+  </section>
+</main>
